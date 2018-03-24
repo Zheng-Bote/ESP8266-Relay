@@ -1,6 +1,6 @@
 # ESP8266 Relay-Manager
 
-## Controlling a relay via web based EPS8266, as an example a powerstrip.
+## Controlling a relay via web based ESP8266, as an example a powerstrip.
 
 ### Features:
 
@@ -14,10 +14,10 @@
   - [x] ESP8266 updater
   - [ ] Alexa integration
   - [ ] Google Assistant integration
-- [x] web based WiFi configuration**
+- [x] web based WiFi configuration
   - [x] auto connect to configured WiFi. If no WiFi configured, an Access Point with web based configuration starts
 - [x] web based configuration of 1, 4 or 8 Relais
-  - [x] web based defined aliases for each Realy
+  - [x] web based defined aliases for each Relay
 - [x] web based MQTT configuration to publish and subscribe topics
 - [x] multicast DNS query support
 - [x] API (HTTP GET-Parameter) for remote control (e.g. Smarthome integration)
@@ -31,7 +31,7 @@
 - [ ] Source Code: After clean up and inline documentation the source code will be provided here, too
 
 
-See Wiki pages for details like 
+See [Wiki pages](https://github.com/htpbbp/ESP8266-Relay/wiki) for details like 
 - setup instructions
 - how to use
 - example project with hardware list
