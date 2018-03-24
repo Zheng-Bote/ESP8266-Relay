@@ -10,10 +10,10 @@
   - [x] Relais
   - [x] MQTT
   - [x] file uploader
-  - [] file manager
+  - [ ] file manager
   - [x] ESP8266 updater
-  - [] Alexa integration
-  - [] Google Assistant integration
+  - [ ] Alexa integration
+  - [ ] Google Assistant integration
 - [x] web based WiFi configuration**
   - [x] auto connect to configured WiFi. If no WiFi configured, an Access Point with web based configuration starts
 - [x] web based configuration of 1, 4 or 8 Relais
@@ -25,14 +25,13 @@
 - [x] Wep pages with Bootstrap design (CDN: Internet connect requiered)
   - [ ] local Bootstrap design
 - [x] OTA updater via Web (control via web interface or API)
-- [] Alexa Support (coming soon)
-- [] Google Assistand support - maybe
+- [ ] Alexa Support (coming soon)
+- [ ] Google Assistand support - maybe
 - [x] EasySetup: Arduino binary for download and install
-- [] Source Code: After clean up and inline documentation the source code will be provided here, too
+- [ ] Source Code: After clean up and inline documentation the source code will be provided here, too
 
 
-For details like 
+See Wiki pages for details like 
 - setup instructions
 - how to use
 - example project with hardware list
-see Wiki pages
