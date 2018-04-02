@@ -1,0 +1,218 @@
+
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Relay Configuration</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<style>
+		body {background-color: powderblue;margin-left:50px; margin-right:50px; margin-bottom:100px;}
+		#footer { position: absolute; bottom: 0; width: 93%; }
+	</style>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+	<script>
+		jQuery(document).ready(function()
+		{
+			$("#relayConfigPwd").hide;
+			$("#saveBtn").hide();
+
+			loadAuto();
+			
+			function loadAuto()
+			{
+				console.log("loadAuto");
+				jQuery.getJSON("/cfgRelais.json",loadItems);
+			}  
+
+			function loadItems(itemList)
+			{
+				if(Object.keys(itemList).length == 1)
+				{
+					jQuery('#relais1').prop('checked', true);
+					addRelay(1);
+						//jQuery("#0").val(itemList[0].name);
+					console.log("Relais: 1");
+					for(var n = 0; n < Object.keys(itemList).length; n++)
+					{
+						var target = '#' + n;
+						jQuery(target).val(itemList[n]);
+					}
+				}
+				if(Object.keys(itemList).length == 4)
+				{
+					jQuery('#relais4').prop('checked', true);
+					addRelay(4);
+						//jQuery("#0").val(itemList[0].name);
+					console.log("Relais: 4");
+					for(var n = 0; n < Object.keys(itemList).length; n++)
+					{
+						var target = '#' + n;
+						jQuery(target).val(itemList[n]);
+					}
+				}
+				if(Object.keys(itemList).length == 8)
+				{
+					jQuery('#relais8').prop('checked', true);
+					addRelay(8);
+						//jQuery("#0").val(itemList[0].name);
+					console.log("Relais: 8");
+					for(var n = 0; n < Object.keys(itemList).length; n++)
+					{
+						var target = '#' + n;
+						jQuery(target).val(itemList[n]);
+					}
+				}
+			}
+
+			jQuery('#saveBtn').click(function () 
+			{	
+				var count = 0;		
+				var cfgRelais = "";		
+				var tmp;
+
+				if($("#relais1").is(':checked'))
+				{
+					count = 1;
+				}
+				if($("#relais4").is(':checked'))
+				{
+					count = 4;
+				}
+				if($("#relais8").is(':checked'))
+				{
+					count = 8;
+				}
+
+				for(var i = 0; i < count; i++)
+				{ 
+					// var text = $( "#0" ).val();
+					tmp = "#" + i;
+					cfgRelais += i + "=" + $(tmp).val() + "&";
+				}
+
+				tmp = "_setRelayConfig?" + cfgRelais;
+
+				var jqxhr = $.post( tmp, function() {
+				  $(location).attr('href',"/");
+				  window.location = "/";
+				  window.location.replace("/");
+				})
+					.fail(function() {
+					$(location).attr('href',"/");
+					window.location = "/"; 
+					window.location.replace("/");
+				  })
+				  .always(function() {
+					$(location).attr('href',"/");
+					window.location = "/";
+					window.location.replace("/");
+				  });
+  
+			});	
+
+		});
+	</script>
+	<script src="tools.js"></script>
+</head>
+
+<body onload="crMenu();">
+	</br>
+	<div id="menue"></div>
+	</br>
+	
+<h1>Relay Configuration</h1>
+	<p>configure your Relais</p>
+
+</hr>
+
+</br>
+
+<form>
+
+  <fieldset class="form-group">
+    <div class="row">
+      <legend class="col-form-label col-sm-2 pt-0">Amount of Relais</legend>
+      <div class="col-sm-10">
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="gridRadios" id="relais1" value="1">
+          <label class="form-check-label" for="relais1">
+            1 Relay
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="gridRadios" id="relais4" value="4">
+          <label class="form-check-label" for="relais4">
+            4 Relais
+          </label>
+        </div>
+        <div class="form-check disabled">
+          <input class="form-check-input" type="radio" name="gridRadios" id="relais8" value="8">
+          <label class="form-check-label" for="relais8">
+            8 Relais
+          </label>
+        </div>
+      </div>
+    </div>
+  </fieldset>
+  <div class="form-group row">
+    <div class="col-sm-2">Relay Configuration</div>
+    <div class="col-sm-10">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="relaypwd">
+        <label class="form-check-label" for="relaypwd">
+          protected
+        </label>
+      </div>
+    </div>
+  </div>
+  <div id="relayConfigPwd"></div>
+  <div id="myDiv"></div>
+  <div class="form-group row">
+    <div class="col-sm-10">
+      <button id="saveBtn" type="submit" class="btn btn-primary">Save configuration</button>
+    </div>
+  </div>
+</form>
+
+
+
+<!-- ############################# -->
+<script>
+	function addRelay(count)
+	{
+		const list = ['TV', 'TV Light', 'Apple TV', 'Chromecast Ultra', 'Android Movie Box', 'USB Harddrive', 'DVD / BlueRay / Audio Player', 'Raspberry HiFiBerry'];
+		$("#myDiv").empty();
+		
+		for (var i = 0; i < count; i++)
+		{
+			var html = '<div class="form-group row"> <label for="' + i + '" class="col-sm-2 col-form-label">Relay ' + i + '</label> <div class="col-sm-10"> <input type="text" class="form-control" id="' + i + '" placeholder="' + list[i] + '"> </div> </div>'; 
+			$("#myDiv").append(html);
+			// $("#myDiv").append('<div class="form-group row"> <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label> <div class="col-sm-10"> <input type="text" class="form-control" id="inputEmail3" placeholder="Email"> </div> </div>');
+		}
+		$("#saveBtn").show();
+	}
+
+	function addRelayPwd()
+	{
+		if($("#relaypwd").is(':checked'))
+		{
+			$("#relayConfigPwd").append('<div class="form-group row"> <label for="relayPwd" class="col-sm-2 col-form-label">Configuration Password</label> <div class="col-sm-10"> <input type="password" class="form-control" id="relayPwd" placeholder="Password"> </div> </div>');
+		}
+		else
+		{
+			$("#relayConfigPwd").empty();
+		}
+	}
+	
+	$('#relais1').click(function(){ addRelay(1); });
+	$('#relais4').click(function(){ addRelay(4); });
+	$('#relais8').click(function(){ addRelay(8); });
+	$('#relaypwd').click(function(){ addRelayPwd(); });
+</script>
+</body>
+</html>
