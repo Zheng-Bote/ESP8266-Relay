@@ -1,4 +1,4 @@
-# ESP8266 Relay-Manager
+# ESP8266 Relay-Manager v001
 
 ## Controlling a relay via web based ESP8266, as an example a powerstrip.
 
