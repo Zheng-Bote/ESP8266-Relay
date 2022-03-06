@@ -207,7 +207,7 @@ After finishing successfully the relay configuration you can go via the menu **H
 Here you got an overview of your configured Relais and their power status. Of course there's also an API available so you can power-on or power-off your relais remotely, as an example via a Raspberry Pi or your Smarthome Automatisation tool like **Fhem** or **OpenHab** and so on.
 
 
-![Power](https://github.com/Zheng-Bote/ESP8266-Relay/blob/master/Images/20_power-status.png" alt="" />
+<img src="https://github.com/Zheng-Bote/ESP8266-Relay/blob/master/Images/20_power-status.png" alt="" />
 
 
 
@@ -217,7 +217,7 @@ Now also the System-Informations on the menue **Sys-Info** show a little bit mor
 (some more configuration options will following with upcoming updates...)
 
 
-![Sys-Infos](https://github.com/Zheng-Bote/ESP8266-Relay/blob/master/Images/21_sysinfos.png" alt="" />
+<img src="https://github.com/Zheng-Bote/ESP8266-Relay/blob/master/Images/21_sysinfos.png" alt="" />
 
 
 
